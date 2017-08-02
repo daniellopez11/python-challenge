@@ -1,9 +1,6 @@
 import os
 import string
 
-# Counter is used for the bonus solution
-from collections import Counter
-
 # Establish the root path and data path
 root_path = os.path.join(os.getcwd(), ".")
 data_path = os.path.join(root_path, "raw_data")
@@ -13,12 +10,12 @@ filepaths = []
 for file in os.listdir(data_path):
     if file.endswith(".txt"):
         filepaths.append(os.path.join(data_path, file))
-
-# Function to read a file and return a list of words and punctuations
+        
 for file in filepaths:
     sentence_count = 0
     letter_count = 0
     punctuations = set(string.punctuation)
+    # Function to read a file and return a list of words and punctuations
     with open(file, "r") as resume_file_handler:
         # the split(), splits each word by whitespaces in the resume file
         word_list = resume_file_handler.read().lower().split()
@@ -34,7 +31,7 @@ for file in filepaths:
         avg_sent = float("{0:2f}".format(word_count/sentence_count))
 
         # Grab the filename from the original path.
-        # The _, gets rid of the path. The , _ gets rid of the .csv.
+        # The _, gets rid of the path.
         _, filename = os.path.split(file)    
         # Print the analysis to the terminal.
         print(
